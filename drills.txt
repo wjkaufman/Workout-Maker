@@ -1,0 +1,94 @@
+#list of drills
+#
+#put name of drill in the beginning, then
+#mean reps and standard deviation in parentheses
+#as (meanReps/stdDev)
+=core
+sit-ups (15/2)
+crunches (20/2)
+bicycles (15/2)
+suitcases (10/2)
+oblique twists (10/3)
+reverse crunches (12/3)
+plank (40/5)
+side plank (25/4)
+Romanian twists (20/5)
+Knee hugs (10/2)
+Leg raises (12/1)
+Supermans (12/2)
+Twist crunch (12/2)
+Jackknives (12/2)
+Hip-ups (10/1)
+Hold crunches (12/2)
+toe touches (10/1)
+Plank hip touches (10/2)
+V-sits (10/2)
+
+=stretching
+Hamstring stretch, sitting down (30/5)
+Quad stretch, standing (20/5)
+Butterfly stretch (20/5)
+Glute stretch (20/5)
+Calf stretch, standing (20/5)
+Triangle leg stretch, glutes (20/5)
+Hamstring roll (6/2)
+IT band roll (6/2)
+Quad roll (6/2)
+Calf roll (10/1)
+
+=warm up
+jog, meters (60/10)
+straight legged march (10/1)
+knee hugs (10/1)
+low skip (10/1)
+high skip (10/1)
+side skip with arm swings (10/1)
+lunge with twist (10/1)
+flamingos, quad pull (10/1)
+butt kicks (10/1)
+high knee skips (10/1)
+pillars with rotation (10/1)
+hip ups (10/1)
+widespread good mornings (10/1)
+side lunge (10/1)
+skip with arm circles (10/1)
+Cariocca (10/1)
+Fire hydrants (10/1)
+Hip Circles (10/1)
+Straight legged jog, drive leg up (10/1)
+Scorpion's (10/1)
+Angels in the snow (10/1)
+A skip (10/1)
+B skip (10/1)
+C skip (10/1)
+Backwards hip rotation (10/1)
+
+=long jump warmup
+B skip (10/1)
+B skip with jump (10/1)
+B skip with jump and two arm drive (10/1)
+Bounds (10/1)
+Bounds with one leg cycle (10/1)
+
+=high jump warmup
+Bridge stretch (10/1)
+B skips (10/1)
+
+=ball handling
+Single leg wrap-arounds (20/5)
+Figure-8 (12/2)
+Waist wraps (20/4)
+Single leg dribble around (10/2)
+Figure-8 dribble (10/1)
+Behind the back dribble (20/4)
+Scissor dribble (20/4)
+Spider dribble (14/4)
+Yo-yo, side to side (20/5)
+Yo-yo, forward to back (20/5)
+
+
+=other
+Calf raises, neutral (50/7)
+Calf raises, toes in (30/5)
+Pushups (15/3)
+Tricep dips (10/2)
