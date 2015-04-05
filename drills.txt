@@ -3,6 +3,7 @@
 #put name of drill in the beginning, then
 #mean reps and standard deviation in parentheses
 #as (meanReps/stdDev)
+
 =core
 sit-ups (15/2)
 crunches (20/2)
@@ -74,7 +75,7 @@ Bounds with one leg cycle (10/1)
 Bridge stretch (10/1)
 B skips (10/1)
 
-=ball handling
+=1 ball handling
 Single leg wrap-arounds (20/5)
 Figure-8 (12/2)
 Waist wraps (20/4)
@@ -86,6 +87,40 @@ Spider dribble (14/4)
 Yo-yo, side to side (20/5)
 Yo-yo, forward to back (20/5)
 
+=2 ball handling
+2 ball ankle high (20/5)
+2 ball knee high (20/5)
+2 ball waist high (20/5)
+2 ball shoulder high (20/5)
+alternating (20/5)
+in and out (20/5)
+swing the gate (20/5)
+figure 8 (20/5)
+side swings (20/5)
+2 dribble cross (20/5)
+2 dribble between the legs (20/5)
+2 dribble behind the back (20/5)
+1 high 1 low (20/5)
+
+=shooting warmup
+1 hand shooting, 2 feet away (6/1)
+2 hand shooting, perfect form (10/1)
+2 dribble in, short jumper, 3 spots (7/1)
+layups, right and left (8/2)
+Mikan drill (12/2)
+Reverse Mikan drill (10/1)
+
+=shooting
+2 dribble elbow jumper (10/2)
+2 dribble wing jumper (10/2)
+2 dribble baseline jumper (10/2)
+spin out from wing, jab, 2 dribble jumper (10/2)
+spin out from wing, shot fake, 2 dribble jumper (10/2)
+2 dribble side step, fake drive, jumper (10/2)
+baseline to baseline shooting (8/2)
+Free throws (10/2)
+spin out 3 pointer (8/2)
+2 dribble 3 pointer (8/2)
 
 =other
 Calf raises, neutral (50/7)

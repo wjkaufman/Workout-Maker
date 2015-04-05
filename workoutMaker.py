@@ -1,7 +1,8 @@
 #this is a workoutMaker
 #let's hope I remember Python...
 import random, re
-print "hello world\n\n=====\n\n"
+
+# print "hello world\n\n=====\n\n"
 
 debug = False
 
@@ -84,11 +85,31 @@ class DrillGroup:
             print self.drillList
             print ("\n=====\n")
 
+    def getRandomDrill(self):
+        return self.drillList[random.randint(0, len(self.drillList) - 1)].getDrill()
+
     def getDrill(self, drillIndex = -1):
         if drillIndex == -1:
-            return self.drillList[random.randint(0, len(self.drillList) - 1)].getDrill()
+            return self.getRandomDrill()
         else:
             return self.drillList[drillIndex].getDrill()
+
+    def getDrills(self, ordered = False, number = -1):
+        if number < 0:
+            number = len(self.drillList)
+        drills = self.name + ": \n"
+        if ordered:
+            for drill in self.drillList:
+                drills += drill.getDrill() + "\n"
+
+                number += -1
+                if number == 0:
+                    break
+        else:
+            for i in range(number):
+                drills += self.getRandomDrill() + "\n"
+
+        return drills
 
     def addDrill(self, d):
         self.drillList.append(d)
@@ -129,6 +150,9 @@ class DrillReader:
     def getDrillGroup(self, index):
         return self.drillGroupList[index]
 
+    def getRandomDrillGroup(self):
+        return self.getDrillGroup(int(random.randint(0, len(self.drillGroupList) - 1)))
+
     def getDrill(self, drillGroup = -1):
         if (drillGroup == -1): #picks a random drillGroup
             return self.getDrill(int( \
@@ -136,11 +160,25 @@ class DrillReader:
         else:
             return self.drillGroupList[drillGroup].getDrill()
 
+    def getDrills(self, drillGroup = -1, ordered = False, number = -1):
+        dg = None
+        if (drillGroup == -1): #picks a random drillGroup
+            dg = self.getRandomDrillGroup()
+        else:
+            dg = self.getDrillGroup(drillGroup)
+
+        if number < 0:
+            return dg.getDrills(ordered)
+        else:
+            return dg.getDrills(ordered, number)
+
     def printDrillGroups(self):
         index = 0
         for dg in self.drillGroupList:
             print (str(index) + ": " + dg.name)
             index += 1
+
+        print "\n"
 
 
 
@@ -151,9 +189,22 @@ class DrillReader:
 
 dr = DrillReader("drills.txt")
 
-# print dr
+dr.printDrillGroups()
 
-for i in range(20):
-    print dr.getDrill(2)
+# 0: core
+# 1: stretching
+# 2: warm up
+# 3: long jump warmup
+# 4: high jump warmup
+# 5: 1 ball handling
+# 6: 2 ball handling
+# 7: shooting warmup
+# 8: shooting
+# 9: other
 
-# dr.printDrillGroups()
+# print dr.getDrills(2, True)
+print dr.getDrills(6, False, 5)
+print dr.getDrills(2, False, 7)
+print dr.getDrills(0, False, 20)
+
+print dr.getDrills(1, False, 10)
