@@ -189,22 +189,40 @@ class DrillReader:
 
 dr = DrillReader("drills.txt")
 
-dr.printDrillGroups()
+# dr.printDrillGroups()
 
-# 0: core
-# 1: stretching
-# 2: warm up
-# 3: long jump warmup
-# 4: high jump warmup
-# 5: 1 ball handling
-# 6: 2 ball handling
-# 7: shooting warmup
-# 8: shooting
-# 9: other
+# 0: warm up
+# 1: long jump warmup
+# 2: high jump drills
+# 3: 1 ball handling
+# 4: 2 ball handling
+# 5: shooting warmup
+# 6: shooting drills
+# 7: auxiliary
+# 8: upper body
+# 9: core
+# 10: stretching
 
-# print dr.getDrills(2, True)
-print dr.getDrills(6, False, 5)
-print dr.getDrills(2, False, 7)
-print dr.getDrills(0, False, 20)
+warmup =  dr.getDrills(0, True) #warmup
 
-print dr.getDrills(1, False, 10)
+ballHandle1 = dr.getDrills(3, False, 5)
+ballHandle2 = dr.getDrills(4, False, 5)
+shootWarmup = dr.getDrills(5, True)
+shooting    = dr.getDrills(6, False, 5)
+
+core    = dr.getDrills(9, False, 20)
+stretch = dr.getDrills(10, False, 20)
+
+print warmup
+
+print ballHandle1
+print ballHandle2
+print shootWarmup
+print shooting
+print ballHandle1
+print shooting
+print ballHandle2
+
+print warmup
+print core
+print stretch
