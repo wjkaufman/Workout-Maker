@@ -18,3 +18,12 @@ specified drillGroup (ordered 0 to n from the order in the drill txt) that is or
 boolean parameter) with ```number``` number of drills.
 
 Running the program will then print the workout!
+
+##To Do
+
+* add weight-bearing capabilities to drills, including amount of weight, weight step (25lb to 35lb, 45, etc.)
+* make a workout class that has different types of workouts saved
+* add an "improve" capability that updates drills, drillGroups, and drillLists by increasing meanReps and changing standard deviation
+* add set capabilities to drills (drillgroup?)
+* supersets?
+* prevent drills from coming up 2 in a row

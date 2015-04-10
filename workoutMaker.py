@@ -216,15 +216,15 @@ core    = dr.getDrills(9, False, 20)
 upperBody = dr.getDrills(8, False, 6)
 stretch = dr.getDrills(10, False, 20)
 
-br = "=====" * 2 + "\n"
+BREAK = "=====" * 2 + "\n"
 
 print warmup
 
-print br
+print BREAK
 
 print highJump
 
-print br
+print BREAK
 
 print ballHandle1
 print ballHandle2
@@ -234,7 +234,7 @@ print ballHandle1
 print shooting
 print ballHandle2
 
-print br
+print BREAK
 
 print warmup
 print core
