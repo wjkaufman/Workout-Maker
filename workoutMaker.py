@@ -7,43 +7,84 @@ import random, re
 debug = False
 
 class Drill:
-    name = "";
-    meanReps = 10;
-    stdDev = 5;
+    name = ""
+    meanReps = 10
+    repStdDev = 5
+    reps = None
 
-    def __init__(self, data): # name, meanReps, stdDev):
+    meanSets = 1.5
+    setStdDev = .2
+    sets = None
+
+    meanWeight = 0
+    weightStdDev = 0.1
+    weightStep = 10
+    weight = None
+
+
+    def __init__(self, data, r = None, s = None, w = None): # name, meanReps, stdDev):
         self.getData(data)
+        self.reps = r
+        self.sets = s
+        self.weight = w
 
     def getData(self, data): #data of form "[name] ([meanReps],[stdDev])"
         if debug:
             print ("in getData for Drill\nData is: " + data)
-        pattern = re.compile(r"(.*?) \((.*?)/(.*?)\)")
-        matcher = pattern.match(data)
+        dataType1 = r"(.*?) \((.*?),(.*?);(.*?),(.*?);(.*?),(.*?)\)"
+        dataType2 = r"(.*?) \((.*?),(.*?);(.*?),(.*?)\)"
+        dataType3 = r"(.*?) \((.*?),(.*?)\)"
+        dataTypes = [dataType1, dataType2, dataType3]
 
-        if debug:
-            print matcher.groups()
+        for dt in dataTypes:
+            pattern = re.compile(dt)
+            matcher = pattern.match(data)
 
-        if (len(matcher.groups()) > 0):
             if debug:
-                print ("changing data in Drill")
-            self.name = matcher.group(1)
-            self.meanReps = int(matcher.group(2))
-            self.stdDev = int(matcher.group(3))
+                print matcher.groups()
+
+            if (matcher != None): #if matcher has matches
+                if debug:
+                    print ("changing data in Drill")
+                #***put in a try catch statement here, catch IndexError here
+                self.name = matcher.group(1)
+                self.meanReps = float(matcher.group(2))
+                self.repStdDev = float(matcher.group(3))
+                self.meanSets = float(matcher.group(4))
+                self.setStdDev = float(matcher.group(5))
+                self.meanWeight = float(matcher.group(6))
+                self.weightStdDev = float(matcher.group(7))
+
+                return #*will this work?
 
         if debug:
-            print ("=====")
+            print ("====="*5)
+
+    def getDataAsString(self):
+        string = self.name + " (" + str(self.meanReps) + "," + str(self.repStdDev)
+        string += ";" + str(self.meanSets) + "," + str(self.setStdDev) + ")"
+
+        return string
 
 
     def __repr__(self):
-        returnString = self.name + ": mean reps: " + str(self.meanReps) + \
-                        ", standard deviation: " + str(self.stdDev)
+        returnString = self.name + ": " + str(self.reps) + ", x" + str(self.sets)
+
         return returnString
 
     def getDrill(self):
-        drill = self.name + ": " + \
-                str(int(round(random.gauss(self.meanReps, self.stdDev))))
+        self.reps = int(round(random.gauss(self.meanReps, self.repStdDev)))
+        self.sets = int(round(random.gauss(self.meanSets, self.setStdDev)))
 
-        return drill
+        return Drill(self.getDataAsString(), self.reps, self.sets)
+
+    def printAll(self):
+        returnString = self.name + ": mean reps: " + str(self.meanReps)
+        returnString += ", standard deviation: " + str(self.repStdDev) + "\n"
+        returnString += "mean sets: " + str(self.meanSets)
+        returnString += ", standard deviation: " + str(self.setStdDev)
+
+        return returnString
 
     def printDrill(self):
         print(self.getDrill())
@@ -95,19 +136,19 @@ class DrillGroup:
             return self.drillList[drillIndex].getDrill()
 
     def getDrills(self, ordered = False, number = -1):
-        if number < 0:
+        if (number < 0 or number > len(self.drillList)):
             number = len(self.drillList)
         drills = self.name + ": \n"
         if ordered:
             for drill in self.drillList:
-                drills += drill.getDrill() + "\n"
+                drills += str(drill.getDrill()) + "\n"
 
                 number += -1
                 if number == 0:
                     break
         else:
             for i in range(number):
-                drills += self.getRandomDrill() + "\n"
+                drills += str(self.getRandomDrill()) + "\n"
 
         return drills
 
