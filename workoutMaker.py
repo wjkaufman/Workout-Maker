@@ -205,15 +205,26 @@ dr = DrillReader("drills.txt")
 
 warmup =  dr.getDrills(0, True) #warmup
 
-ballHandle1 = dr.getDrills(3, False, 5)
-ballHandle2 = dr.getDrills(4, False, 5)
+highJump = dr.getDrills(2,False, 10)
+
+ballHandle1 = dr.getDrills(3, False, 12)
+ballHandle2 = dr.getDrills(4, False, 10)
 shootWarmup = dr.getDrills(5, True)
-shooting    = dr.getDrills(6, False, 5)
+shooting    = dr.getDrills(6, False, 10)
 
 core    = dr.getDrills(9, False, 20)
+upperBody = dr.getDrills(8, False, 6)
 stretch = dr.getDrills(10, False, 20)
 
+br = "=====" * 2 + "\n"
+
 print warmup
+
+print br
+
+print highJump
+
+print br
 
 print ballHandle1
 print ballHandle2
@@ -223,6 +234,9 @@ print ballHandle1
 print shooting
 print ballHandle2
 
+print br
+
 print warmup
 print core
+print upperBody
 print stretch
