@@ -12,12 +12,12 @@ class Drill:
     repStdDev = 5
     reps = None
 
-    meanSets = 1.5
-    setStdDev = .2
+    meanSets = None
+    setStdDev = None
     sets = None
 
-    meanWeight = 0
-    weightStdDev = 0.1
+    meanWeight = None
+    weightStdDev = None
     weightStep = 10
     weight = None
 
@@ -40,43 +40,57 @@ class Drill:
             pattern = re.compile(dt)
             matcher = pattern.match(data)
 
-            if debug:
-                print matcher.groups()
+
 
             if (matcher != None): #if matcher has matches
                 if debug:
                     print ("changing data in Drill")
-                #***put in a try catch statement here, catch IndexError here
-                self.name = matcher.group(1)
-                self.meanReps = float(matcher.group(2))
-                self.repStdDev = float(matcher.group(3))
-                self.meanSets = float(matcher.group(4))
-                self.setStdDev = float(matcher.group(5))
-                self.meanWeight = float(matcher.group(6))
-                self.weightStdDev = float(matcher.group(7))
-
-                return #*will this work?
+                    print matcher.groups()
+                try:
+                    self.name = matcher.group(1)
+                    self.meanReps = float(matcher.group(2))
+                    self.repStdDev = float(matcher.group(3))
+                    self.meanSets = float(matcher.group(4))
+                    self.setStdDev = float(matcher.group(5))
+                    self.meanWeight = float(matcher.group(6))
+                    self.weightStdDev = float(matcher.group(7))
+                except IndexError:
+                    if debug:
+                        print "in except statement"
+                    print "IndexError caught"
+                return
 
         if debug:
             print ("====="*5)
 
     def getDataAsString(self):
-        string = self.name + " (" + str(self.meanReps) + "," + str(self.repStdDev)
-        string += ";" + str(self.meanSets) + "," + str(self.setStdDev) + ")"
+        string = self.name + " (" + str(self.meanReps) + ", " + str(self.repStdDev)
+        if self.meanSets != None:
+            string += "; " + str(self.meanSets) + ", " + str(self.setStdDev)
+            if self.meanWeight != None:
+                string += "; " + str(self.meanWeight) + ", " + str(self.weightStdDev)
+
+        string += ")"
 
         return string
 
 
     def __repr__(self):
-        returnString = self.name + ": " + str(self.reps) + ", x" + str(self.sets)
+        returnString = self.name + ": " + str(self.reps)
+
+        if self.sets != None:
+            returnString += ", x" + str(self.sets)
 
         return returnString
 
     def getDrill(self):
         self.reps = int(round(random.gauss(self.meanReps, self.repStdDev)))
-        self.sets = int(round(random.gauss(self.meanSets, self.setStdDev)))
+        if self.meanSets != None:
+            self.sets = int(round(random.gauss(self.meanSets, self.setStdDev)))
+        if self.meanWeight != None:
+            self.weight = int(round(random.gauss(self.meanWeight, self.weightStdDev)))
 
-        return Drill(self.getDataAsString(), self.reps, self.sets)
+        return Drill(self.getDataAsString(), self.reps, self.sets, self.weight)
 
     def printAll(self):
         returnString = self.name + ": mean reps: " + str(self.meanReps)
@@ -254,28 +268,28 @@ shootWarmup = dr.getDrills(5, True)
 shooting    = dr.getDrills(6, False, 10)
 
 core    = dr.getDrills(9, False, 20)
-upperBody = dr.getDrills(8, False, 6)
+upperBody = dr.getDrills(8, False, 10)
 stretch = dr.getDrills(10, False, 20)
 
 BREAK = "=====" * 2 + "\n"
 
-print warmup
-
-print BREAK
-
-print highJump
-
-print BREAK
-
-print ballHandle1
-print ballHandle2
-print shootWarmup
-print shooting
-print ballHandle1
-print shooting
-print ballHandle2
-
-print BREAK
+# print warmup
+#
+# print BREAK
+#
+# print highJump
+#
+# print BREAK
+#
+# print ballHandle1
+# print ballHandle2
+# print shootWarmup
+# print shooting
+# print ballHandle1
+# print shooting
+# print ballHandle2
+#
+# print BREAK
 
 print warmup
 print core
