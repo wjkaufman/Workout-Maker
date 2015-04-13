@@ -5,7 +5,6 @@ import random, re
 
 debug = True
 
-
 def roundToNearest(x, base = 5):
     return int(base * round(float(x) / base))
 
@@ -231,22 +230,33 @@ class DrillReader:
     drillGroupList = []
 
     def __init__(self, filePath):
+        self.drillGroupList = []
+        if debug:
+            print "in constructor for DrillReader, filepath is: " + filePath
         file = open(filePath, 'r')
+
+        if debug:
+            print "printing self: "
+            print self
 
         for line in file:
             if (len(line.replace(" ","")) > 1 \
                 and line[0] != "#"): #checks for blank lines and comments
                 if (line[0] == "="): #new drillGroup
-                    dg = DrillGroup(line)
+
                     if debug:
                         print("in drillReader constructor, adding drillGroup")
+                    dg = DrillGroup(line)
+                    if debug:
                         print dg
                     self.drillGroupList.append(dg)
 
                 else:
-                    d = Drill(line)
+
                     if debug:
                         print("in drillReader constructor, adding drill")
+                    d = Drill(line)
+                    if debug:
                         print(d)
                         print("adding to " + str(self.drillGroupList[-1]))
                     self.drillGroupList[-1].addDrill(d)
@@ -317,7 +327,7 @@ core    = dr.getDrills(3, False, 20)
 upperBody = dr.getDrills(2, False, 10)
 stretch = dr.getDrills(4, False, 20)
 
-BREAK = "=====" * 2 + "\n"
+BREAK = "=====" * 5 + "\n"
 
 print warmup
 
