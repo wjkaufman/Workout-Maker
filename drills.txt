@@ -4,6 +4,7 @@
 #mean reps and standard deviation in parentheses
 #as (meanReps, repStdDev; meanSets, setStdDev)
 
+#0
 =warm up
 jog, meters (60, 10)
 straight legged march (10, 1)
@@ -30,6 +31,7 @@ C skip (10, 1)
 Angels (10, 1)
 Scorpions (10, 1)
 
+#1
 =auxiliary
 Calf raises, neutral (50, 7)
 Calf raises, toes in (30, 5)
@@ -37,7 +39,20 @@ Calf raises, toes out (30, 5)
 Single leg balance (45, 10)
 Single leg RDL (12, 1)
 
+#2
+=ladder drills
+two feet in
+two feet in, backwards
+typewriter
+typewriter, backwards
+two feet in one foot out
+two feet in one foot out, backwards
+cross country
+two feet in, side
+one foot in, hop
+one foot in, hop, backwards
 
+#3
 =upper body
 Pushups (15, 2)
 Diamond pushups (14, 2)
@@ -46,6 +61,7 @@ Tricep dips (10, 2)
 Inchworm (4, .5)
 Plank to pushup (10, 1)
 
+#4
 =core
 sit-ups (15, 2)
 crunches (20, 2)
@@ -69,6 +85,7 @@ V-sits (10, 2)
 Mountain climbers (18, 2)
 Windshield wipers (10, 1)
 
+#5
 =stretching
 Hamstring stretch, sitting down (30, 5)
 Quad stretch, standing (20, 5)

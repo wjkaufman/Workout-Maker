@@ -11,8 +11,8 @@ def roundToNearest(x, base = 5):
 
 class Drill:
     name = ""
-    meanReps = 10
-    repStdDev = 5
+    meanReps = None
+    repStdDev = None
     reps = None
 
     meanWeight = None
@@ -36,9 +36,16 @@ class Drill:
         dataType1 = r"(.*?) \((.*?),(.*?);(.*?),(.*?);(.*?),(.*?)\)"
         dataType2 = r"(.*?) \((.*?),(.*?);(.*?),(.*?)\)"
         dataType3 = r"(.*?) \((.*?),(.*?)\)"
-        dataTypes = [dataType1, dataType2, dataType3]
+        dataType4 = r"(.*)"
 
+        dataTypes = [dataType1, dataType2, dataType3, dataType4]
+
+        dtCount = 0
         for dt in dataTypes:
+            dtCount += 1
+            if debug:
+                print "in dataType" + str(dtCount)
+
             pattern = re.compile(dt)
             matcher = pattern.match(data)
 
@@ -48,32 +55,51 @@ class Drill:
                     print matcher.groups()
                 try:
                     self.name = matcher.group(1)
+                    if debug:
+                        print "past matcher group 1"
                     self.meanReps = float(matcher.group(2))
+                    if debug:
+                        print "past matcher group 2"
                     self.repStdDev = float(matcher.group(3))
+                    if debug:
+                        print "past matcher group 3"
                     self.meanWeight = float(matcher.group(4))
+                    if debug:
+                        print "past matcher group 4"
                     self.weightStdDev = float(matcher.group(5))
+                    if debug:
+                        print "past matcher group 5"
                     self.meanSets = float(matcher.group(6))
+                    if debug:
+                        print "past matcher group 6"
                     self.setStdDev = float(matcher.group(7))
+                    if debug:
+                        print "past matcher group 7"
 
                     break
 
                 except IndexError:
                     if debug:
-                        print "in except statement"
-                        print "IndexError caught"
+                        print "in except statement, drill is currently:"
+                        print self.meanReps
+                        print "breaking now"
+
+                    break
 
 
         if debug:
             print ("====="*5)
 
     def getDataAsString(self):
-        string = self.name + " (" + str(self.meanReps) + ", " + str(self.repStdDev)
-        if self.meanWeight != None:
-            string += "; " + str(self.meanWeight) + ", " + str(self.weightStdDev)
-            if self.meanSets != None:
-                string += "; " + str(self.meanSets) + ", " + str(self.setStdDev)
+        string = self.name
+        if self.meanReps != None:
+            string += " (" + str(self.meanReps) + ", " + str(self.repStdDev)
+            if self.meanWeight != None:
+                string += "; " + str(self.meanWeight) + ", " + str(self.weightStdDev)
+                if self.meanSets != None:
+                    string += "; " + str(self.meanSets) + ", " + str(self.setStdDev)
 
-        string += ")"
+            string += ")"
 
         return string
 
@@ -97,7 +123,9 @@ class Drill:
     def getDrill(self):
         if debug:
             print "Im in getDrill for " + str(self)
-        self.reps = int(round(random.gauss(self.meanReps, self.repStdDev)))
+
+        if self.meanReps != None:
+            self.reps = int(round(random.gauss(self.meanReps, self.repStdDev)))
         if self.meanWeight != None:
             if debug:
                 print "getting weight (the problem area)"
@@ -179,7 +207,7 @@ class DrillGroup:
             return self.drillList[drillIndex].getDrill()
 
     def getDrills(self, ordered = False, number = -1):
-        if (number < 0 or number > len(self.drillList)):
+        if (number < 0):
             number = len(self.drillList)
         drills = self.name + ": \n"
         if ordered:
