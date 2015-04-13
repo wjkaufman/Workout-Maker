@@ -1,10 +1,13 @@
 #this is a workoutMaker
 #let's hope I remember Python...
+
 import random, re
 
-# print "hello world\n\n=====\n\n"
+debug = True
 
-debug = False
+
+def roundToNearest(x, base = 5):
+    return int(base * round(float(x) / base))
 
 class Drill:
     name = ""
@@ -12,21 +15,20 @@ class Drill:
     repStdDev = 5
     reps = None
 
+    meanWeight = None
+    weightStdDev = None
+    weightStep = 5
+    weight = None
+
     meanSets = None
     setStdDev = None
     sets = None
 
-    meanWeight = None
-    weightStdDev = None
-    weightStep = 10
-    weight = None
-
-
-    def __init__(self, data, r = None, s = None, w = None): # name, meanReps, stdDev):
+    def __init__(self, data, r = None, w = None, s = None): # name, meanReps, stdDev):
         self.getData(data)
         self.reps = r
-        self.sets = s
         self.weight = w
+        self.sets = s
 
     def getData(self, data): #data of form "[name] ([meanReps],[stdDev])"
         if debug:
@@ -40,8 +42,6 @@ class Drill:
             pattern = re.compile(dt)
             matcher = pattern.match(data)
 
-
-
             if (matcher != None): #if matcher has matches
                 if debug:
                     print ("changing data in Drill")
@@ -50,25 +50,28 @@ class Drill:
                     self.name = matcher.group(1)
                     self.meanReps = float(matcher.group(2))
                     self.repStdDev = float(matcher.group(3))
-                    self.meanSets = float(matcher.group(4))
-                    self.setStdDev = float(matcher.group(5))
-                    self.meanWeight = float(matcher.group(6))
-                    self.weightStdDev = float(matcher.group(7))
+                    self.meanWeight = float(matcher.group(4))
+                    self.weightStdDev = float(matcher.group(5))
+                    self.meanSets = float(matcher.group(6))
+                    self.setStdDev = float(matcher.group(7))
+
+                    break
+
                 except IndexError:
                     if debug:
                         print "in except statement"
-                    print "IndexError caught"
-                return
+                        print "IndexError caught"
+
 
         if debug:
             print ("====="*5)
 
     def getDataAsString(self):
         string = self.name + " (" + str(self.meanReps) + ", " + str(self.repStdDev)
-        if self.meanSets != None:
-            string += "; " + str(self.meanSets) + ", " + str(self.setStdDev)
-            if self.meanWeight != None:
-                string += "; " + str(self.meanWeight) + ", " + str(self.weightStdDev)
+        if self.meanWeight != None:
+            string += "; " + str(self.meanWeight) + ", " + str(self.weightStdDev)
+            if self.meanSets != None:
+                string += "; " + str(self.meanSets) + ", " + str(self.setStdDev)
 
         string += ")"
 
@@ -76,32 +79,58 @@ class Drill:
 
 
     def __repr__(self):
-        returnString = self.name + ": " + str(self.reps)
+        string = ""
+        if self.reps != None:
+            string = self.name + ": " + str(self.reps)
 
-        if self.sets != None:
-            returnString += ", x" + str(self.sets)
+            if self.weight != None:
+                string += " w/ " + str(self.weight)
 
-        return returnString
+            if self.sets != None:
+                string += ", x" + str(self.sets)
+
+        else:
+            string = self.getDataAsString()
+
+        return string
 
     def getDrill(self):
+        if debug:
+            print "Im in getDrill for " + str(self)
         self.reps = int(round(random.gauss(self.meanReps, self.repStdDev)))
+        if self.meanWeight != None:
+            if debug:
+                print "getting weight (the problem area)"
+                print "meanWeight: " + str(self.meanWeight)
+                print "weightStdDev: " + str(self.weightStdDev)
+                print "weightStep: " + str(self.weightStep)
+
+            self.weight = int(roundToNearest(random.gauss(self.meanWeight, self.weightStdDev),
+                              self.weightStep))
+
+            if debug:
+                print "weight: " + str(self.weight)
+
         if self.meanSets != None:
             self.sets = int(round(random.gauss(self.meanSets, self.setStdDev)))
-        if self.meanWeight != None:
-            self.weight = int(round(random.gauss(self.meanWeight, self.weightStdDev)))
 
-        return Drill(self.getDataAsString(), self.reps, self.sets, self.weight)
+        return Drill(self.getDataAsString(), self.reps, self.weight, self.sets)
 
-    def printAll(self):
+    def printDrill(self):
         returnString = self.name + ": mean reps: " + str(self.meanReps)
-        returnString += ", standard deviation: " + str(self.repStdDev) + "\n"
-        returnString += "mean sets: " + str(self.meanSets)
-        returnString += ", standard deviation: " + str(self.setStdDev)
+        returnString += ", rep standard deviation: " + str(self.repStdDev) + "\n"
+        if self.meanWeight != None:
+            returnString += "mean weight: " + str(self.meanWeight)
+            returnString += ", weight std dev: " + str(self.weightStdDev)
+        if self.meanSets != None:
+            returnString += "mean sets: " + str(self.meanSets)
+            returnString += ", standard deviation: " + str(self.setStdDev)
 
         return returnString
 
-    def printDrill(self):
-        print(self.getDrill())
+    def improve(self, factor):
+        self.meanReps = round(self.meanReps * factor, 1)
+        self.meanWeight = round(self.meanWeight * factor, 1)
 
 class DrillGroup:
 
@@ -243,53 +272,42 @@ class DrillReader:
 ##############################
 
 dr = DrillReader("drills.txt")
-
-# dr.printDrillGroups()
-
-# 0: warm up
-# 1: long jump warmup
-# 2: high jump drills
-# 3: 1 ball handling
-# 4: 2 ball handling
-# 5: shooting warmup
-# 6: shooting drills
-# 7: auxiliary
-# 8: upper body
-# 9: core
-# 10: stretching
+bball = DrillReader("drills-basketball.txt")
+running =  DrillReader("drills-running.txt")
+track = DrillReader("drills-track.txt")
 
 warmup =  dr.getDrills(0, True) #warmup
 
-highJump = dr.getDrills(2,False, 10)
+highJump = track.getDrills(1,False, 10)
 
-ballHandle1 = dr.getDrills(3, False, 12)
-ballHandle2 = dr.getDrills(4, False, 10)
-shootWarmup = dr.getDrills(5, True)
-shooting    = dr.getDrills(6, False, 10)
+ballHandle1 = bball.getDrills(0, False, 12)
+ballHandle2 = bball.getDrills(1, False, 10)
+shootWarmup = bball.getDrills(2, True)
+shooting    = bball.getDrills(3, False, 10)
 
-core    = dr.getDrills(9, False, 20)
-upperBody = dr.getDrills(8, False, 10)
-stretch = dr.getDrills(10, False, 20)
+core    = dr.getDrills(3, False, 20)
+upperBody = dr.getDrills(2, False, 10)
+stretch = dr.getDrills(4, False, 20)
 
 BREAK = "=====" * 2 + "\n"
 
-# print warmup
-#
-# print BREAK
-#
-# print highJump
-#
-# print BREAK
-#
-# print ballHandle1
-# print ballHandle2
-# print shootWarmup
-# print shooting
-# print ballHandle1
-# print shooting
-# print ballHandle2
-#
-# print BREAK
+print warmup
+
+print BREAK
+
+print highJump
+
+print BREAK
+
+print ballHandle1
+print ballHandle2
+print shootWarmup
+print shooting
+print ballHandle1
+print shooting
+print ballHandle2
+
+print BREAK
 
 print warmup
 print core

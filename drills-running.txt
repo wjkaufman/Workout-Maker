@@ -1,0 +1,4 @@
+=trail runs
+Water tower loop (30.5, .6)
+Mesa trail extended water tower loop (51, .5)
+Sound of music trail (29, .6)
