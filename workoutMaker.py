@@ -3,7 +3,7 @@
 
 import random, re
 
-debug = True
+debug = False
 
 def roundToNearest(x, base = 5):
     return int(base * round(float(x) / base))
@@ -54,26 +54,12 @@ class Drill:
                     print matcher.groups()
                 try:
                     self.name = matcher.group(1)
-                    if debug:
-                        print "past matcher group 1"
                     self.meanReps = float(matcher.group(2))
-                    if debug:
-                        print "past matcher group 2"
                     self.repStdDev = float(matcher.group(3))
-                    if debug:
-                        print "past matcher group 3"
                     self.meanWeight = float(matcher.group(4))
-                    if debug:
-                        print "past matcher group 4"
                     self.weightStdDev = float(matcher.group(5))
-                    if debug:
-                        print "past matcher group 5"
                     self.meanSets = float(matcher.group(6))
-                    if debug:
-                        print "past matcher group 6"
                     self.setStdDev = float(matcher.group(7))
-                    if debug:
-                        print "past matcher group 7"
 
                     break
 
@@ -159,6 +145,12 @@ class Drill:
         self.meanReps = round(self.meanReps * factor, 1)
         self.meanWeight = round(self.meanWeight * factor, 1)
 
+    def equals(self, otherDrill):
+        if self.name == otherDrill.name:
+            return True
+        else:
+            return False
+
 class DrillGroup:
 
     drillList = []
@@ -208,17 +200,26 @@ class DrillGroup:
     def getDrills(self, ordered = False, number = -1):
         if (number < 0):
             number = len(self.drillList)
+
+        myDrills = []
         drills = self.name + ": \n"
         if ordered:
             for drill in self.drillList:
-                drills += str(drill.getDrill()) + "\n"
+                myDrills.append(drill.getDrill())
 
                 number += -1
                 if number == 0:
                     break
         else:
             for i in range(number):
-                drills += str(self.getRandomDrill()) + "\n"
+                nextDrill = self.getRandomDrill()
+                if len(myDrills) > 0:
+                    while nextDrill.equals(myDrills[-1]):
+                        nextDrill = self.getRandomDrill()
+                myDrills.append(nextDrill)
+
+        for drill in myDrills:
+            drills += str(drill) + "\n"
 
         return drills
 
@@ -309,23 +310,27 @@ class DrillReader:
 #Implementation and test code#
 ##############################
 
-dr = DrillReader("drills.txt")
-bball = DrillReader("drills-basketball.txt")
-running =  DrillReader("drills-running.txt")
-track = DrillReader("drills-track.txt")
+dr = DrillReader("drills/general.txt")
+bball = DrillReader("drills/basketball.txt")
+running =  DrillReader("drills/running.txt")
+track = DrillReader("drills/track.txt")
 
-warmup =  dr.getDrills(0, True) #warmup
+warmup =  dr.getDrills(0, True, 5) #warmup
+warmup += dr.getDrills(0,False,8)
 
-highJump = track.getDrills(1,False, 10)
+hjApproach = track.getDrills(1,False, 10)
+hjTakeoff = track.getDrills(2, False, 5)
 
 ballHandle1 = bball.getDrills(0, False, 12)
 ballHandle2 = bball.getDrills(1, False, 10)
 shootWarmup = bball.getDrills(2, True)
 shooting    = bball.getDrills(3, False, 10)
 
-core    = dr.getDrills(3, False, 20)
-upperBody = dr.getDrills(2, False, 10)
-stretch = dr.getDrills(4, False, 20)
+core    = dr.getDrills(4, False, 20)
+aux    = dr.getDrills(1, False, 10)
+
+upperBody = dr.getDrills(3, False, 10)
+stretch = dr.getDrills(5, False, 20)
 
 BREAK = "=====" * 5 + "\n"
 
@@ -333,17 +338,18 @@ print warmup
 
 print BREAK
 
-print highJump
+print hjApproach
+print hjTakeoff
 
 print BREAK
 
 print ballHandle1
 print ballHandle2
 print shootWarmup
-print shooting
-print ballHandle1
-print shooting
-print ballHandle2
+# print shooting
+# print ballHandle1
+# print shooting
+# print ballHandle2
 
 print BREAK
 
