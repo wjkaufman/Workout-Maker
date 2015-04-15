@@ -321,8 +321,8 @@ warmup += dr.getDrills(0,False,8)
 hjApproach = track.getDrills(1,False, 10)
 hjTakeoff = track.getDrills(2, False, 5)
 
-ballHandle1 = bball.getDrills(0, False, 12)
-ballHandle2 = bball.getDrills(1, False, 10)
+ballHandle1 = bball.getDrills(0, False, 10)
+ballHandle2 = bball.getDrills(1, False, 7)
 shootWarmup = bball.getDrills(2, True)
 shooting    = bball.getDrills(3, False, 10)
 
@@ -334,14 +334,14 @@ stretch = dr.getDrills(5, False, 20)
 
 BREAK = "=====" * 5 + "\n"
 
-print warmup
+# print warmup
+#
+# print BREAK
 
-print BREAK
+# print hjApproach
+# print hjTakeoff
 
-print hjApproach
-print hjTakeoff
-
-print BREAK
+# print BREAK
 
 print ballHandle1
 print ballHandle2
@@ -353,7 +353,7 @@ print shootWarmup
 
 print BREAK
 
-print warmup
+# print warmup
 print core
 print upperBody
 print stretch

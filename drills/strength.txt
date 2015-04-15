@@ -1,0 +1,10 @@
+=lower body
+squat (10,2;120,10;3,.5)
+dumbell lunges (10,2;1,1;1,1)
+deadlift
+hamstring curls
+quad curls
+sitting squat
+
+=chest
+bench press (12,3;65,5;3,.5)
