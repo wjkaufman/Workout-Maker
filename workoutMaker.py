@@ -197,7 +197,7 @@ class DrillGroup:
         else:
             return self.drillList[drillIndex].getDrill()
 
-    def getDrills(self, ordered = False, number = -1):
+    def getDrills(self, ordered = False, number = -1, unique = False):
         if (number < 0):
             number = len(self.drillList)
 
@@ -210,12 +210,29 @@ class DrillGroup:
                 number += -1
                 if number == 0:
                     break
-        else:
+        else: #get random drills
+            if unique and number > len(self.drillList):
+                number = len(self.drillList)
+
             for i in range(number):
                 nextDrill = self.getRandomDrill()
                 if len(myDrills) > 0:
-                    while nextDrill.equals(myDrills[-1]):
-                        nextDrill = self.getRandomDrill()
+                    if unique:
+                        isUnique = True
+                        for d in myDrills:
+                            if nextDrill.equals(d):
+                                isUnique = False
+                        while not isUnique:
+                            nextDrill = self.getRandomDrill()
+                            isUnique = True
+                            for d in myDrills:
+                                if nextDrill.equals(d):
+                                    isUnique = False
+
+                    else:
+                        while nextDrill.equals(myDrills[-1]):
+                            nextDrill = self.getRandomDrill()
+
                 myDrills.append(nextDrill)
 
         for drill in myDrills:
@@ -283,17 +300,15 @@ class DrillReader:
         else:
             return self.drillGroupList[drillGroup].getDrill()
 
-    def getDrills(self, drillGroup = -1, ordered = False, number = -1):
+    def getDrills(self, drillGroup = -1, ordered = False, number = -1, unique = False):
         dg = None
         if (drillGroup == -1): #picks a random drillGroup
             dg = self.getRandomDrillGroup()
         else:
             dg = self.getDrillGroup(drillGroup)
 
-        if number < 0:
-            return dg.getDrills(ordered)
-        else:
-            return dg.getDrills(ordered, number)
+
+        return dg.getDrills(ordered, number, unique)
 
     def printDrillGroups(self):
         index = 0
@@ -321,7 +336,7 @@ warmup += dr.getDrills(0,False,8)
 hjApproach = track.getDrills(1,False, 10)
 hjTakeoff = track.getDrills(2, False, 5)
 
-ballHandle1 = bball.getDrills(0, False, 10)
+ballHandle1 = bball.getDrills(0, False, 100)
 ballHandle2 = bball.getDrills(1, False, 7)
 shootWarmup = bball.getDrills(2, True)
 shooting    = bball.getDrills(3, False, 10)
@@ -344,16 +359,16 @@ BREAK = "=====" * 5 + "\n"
 # print BREAK
 
 print ballHandle1
-print ballHandle2
-print shootWarmup
+# print ballHandle2
+# print shootWarmup
 # print shooting
 # print ballHandle1
 # print shooting
 # print ballHandle2
 
-print BREAK
+# print BREAK
 
 # print warmup
-print core
-print upperBody
-print stretch
+# print core
+# print upperBody
+# print stretch
