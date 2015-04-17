@@ -142,8 +142,10 @@ class Drill:
         return returnString
 
     def improve(self, factor):
-        self.meanReps = round(self.meanReps * factor, 1)
-        self.meanWeight = round(self.meanWeight * factor, 1)
+        if self.meanReps != None:
+            self.meanReps = round(self.meanReps * factor, 1)
+            if self.meanWeight != None:
+                self.meanWeight = round(self.meanWeight * factor, 1)
 
     def equals(self, otherDrill):
         if self.name == otherDrill.name:
@@ -167,6 +169,13 @@ class DrillGroup:
             returnString += str(drill) + "\n"
 
         return returnString
+
+    def getDataAsString(self):
+        string = "=" + self.name + "\n"
+        for drill in self.drillList:
+            string += drill.getDataAsString() + "\n"
+
+        return string
 
     def getData(self, data):
         if debug:
@@ -243,6 +252,10 @@ class DrillGroup:
     def addDrill(self, d):
         self.drillList.append(d)
 
+    def improve(self, factor):
+        for drill in self.drillList:
+            drill.improve(factor)
+
 
 class DrillReader:
     drillGroupList = []
@@ -286,6 +299,13 @@ class DrillReader:
 
         return returnString
 
+    def getDataAsString(self):
+        string = ""
+        for dg in self.drillGroupList:
+            string += dg.getDataAsString() + "\n"
+
+        return string
+
 
     def getDrillGroup(self, index):
         return self.drillGroupList[index]
@@ -318,6 +338,10 @@ class DrillReader:
 
         print "\n"
 
+    def improve(self, factor):
+        for dg in self.drillGroupList:
+            dg.improve(factor)
+
 
 
 
@@ -325,18 +349,18 @@ class DrillReader:
 #Implementation and test code#
 ##############################
 
-dr = DrillReader("drills/general.txt")
-bball = DrillReader("drills/basketball.txt")
-running =  DrillReader("drills/running.txt")
-track = DrillReader("drills/track.txt")
+dr = DrillReader("drills/2015-04-17_general.txt")
+bball = DrillReader("drills/2015-04-13_basketball.txt")
+running =  DrillReader("drills/2015-04-13_running.txt")
+track = DrillReader("drills/2015-04-13_track.txt")
 
 warmup =  dr.getDrills(0, True, 5) #warmup
-warmup += dr.getDrills(0,False,8)
+warmup += dr.getDrills(0,False,8, True)
 
-hjApproach = track.getDrills(1,False, 10)
-hjTakeoff = track.getDrills(2, False, 5)
+hjApproach = track.getDrills(1,False, 10, True)
+hjTakeoff = track.getDrills(2, False, 6, True)
 
-ballHandle1 = bball.getDrills(0, False, 100)
+ballHandle1 = bball.getDrills(0, False, 10)
 ballHandle2 = bball.getDrills(1, False, 7)
 shootWarmup = bball.getDrills(2, True)
 shooting    = bball.getDrills(3, False, 10)
@@ -349,26 +373,26 @@ stretch = dr.getDrills(5, False, 20)
 
 BREAK = "=====" * 5 + "\n"
 
-# print warmup
-#
-# print BREAK
+print warmup
 
-# print hjApproach
-# print hjTakeoff
+print BREAK
 
-# print BREAK
+print hjApproach
+print hjTakeoff
+
+print BREAK
 
 print ballHandle1
-# print ballHandle2
-# print shootWarmup
-# print shooting
-# print ballHandle1
-# print shooting
-# print ballHandle2
+print ballHandle2
+print shootWarmup
+print shooting
+print ballHandle1
+print shooting
+print ballHandle2
 
-# print BREAK
+print BREAK
 
-# print warmup
-# print core
-# print upperBody
-# print stretch
+print warmup
+print core
+print upperBody
+print stretch

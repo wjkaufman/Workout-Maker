@@ -22,6 +22,4 @@ Running the program will then print the workout!
 ##To Do
 
 * make a workout class that has different types of workouts saved
-* add an "improve" capability that updates drills, drillGroups, and drillLists by increasing meanReps and changing standard deviation
 * add a "weave" ability that combines two different drill groups (like leg strength, upper body strength, leg, etc.)
-* add a "unique" parameter that only gets one of each drill
