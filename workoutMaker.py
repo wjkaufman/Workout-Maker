@@ -349,27 +349,35 @@ class DrillReader:
 #Implementation and test code#
 ##############################
 
-dr = DrillReader("drills/2015-04-17_general.txt")
-bball = DrillReader("drills/2015-04-13_basketball.txt")
-running =  DrillReader("drills/2015-04-13_running.txt")
-track = DrillReader("drills/2015-04-13_track.txt")
+dr = DrillReader("drills/general-2.txt")
+bball = DrillReader("drills/basketball.txt")
+running =  DrillReader("drills/running.txt")
+track = DrillReader("drills/track.txt")
 
-warmup =  dr.getDrills(0, True, 5) #warmup
-warmup += dr.getDrills(0,False,8, True)
+warmup =  dr.getDrills(0, True) + "\n"
+warmup += dr.getDrills(1, False, 6, True) + "\n"
+warmup += dr.getDrills(2, True) + "\n"
+warmup += dr.getDrills(1, False, 6, True) + "\n"
+warmup += dr.getDrills(1, False, 6, True) + "\n"
 
-hjApproach = track.getDrills(1,False, 10, True)
-hjTakeoff = track.getDrills(2, False, 6, True)
+hjApproach = track.getDrills(1,False, 7, True)
+hjTakeoff = track.getDrills(2, False, 4, True)
 
 ballHandle1 = bball.getDrills(0, False, 10)
 ballHandle2 = bball.getDrills(1, False, 7)
 shootWarmup = bball.getDrills(2, True)
-shooting    = bball.getDrills(3, False, 10)
+midrange    = bball.getDrills(3, False, 6, True)
+threes = bball.getDrills(4, False, 3, True)
 
-core    = dr.getDrills(4, False, 20)
-aux    = dr.getDrills(1, False, 10)
+core    = dr.getDrills(7, False, 20)
+aux    = dr.getDrills(4, False, 10, True)
+upperBody = dr.getDrills(6, False, 10)
 
-upperBody = dr.getDrills(3, False, 10)
-stretch = dr.getDrills(5, False, 20)
+static = dr.getDrills(8, False, 10)
+static2 = dr.getDrills(8, False, 20)
+roll = dr.getDrills(9, False, 5, True)
+roll2 = dr.getDrills(9, False, 10)
+
 
 BREAK = "=====" * 5 + "\n"
 
@@ -377,22 +385,23 @@ print warmup
 
 print BREAK
 
-print hjApproach
 print hjTakeoff
+print hjApproach
 
 print BREAK
 
+# print shootWarmup
 print ballHandle1
 print ballHandle2
-print shootWarmup
-print shooting
-print ballHandle1
-print shooting
-print ballHandle2
+# print midrange
+# print threes
 
 print BREAK
 
-print warmup
 print core
+print aux
 print upperBody
-print stretch
+print roll
+print static
+print roll2
+print static2

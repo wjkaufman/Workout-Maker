@@ -6,32 +6,55 @@
 
 #0
 =warm up
-jog, meters (60, 10)
-straight legged march (10, 1)
-knee hugs (10, 1)
-low skip (10, 1)
-high skip (10, 1)
+jog (60, 10)
+skip with arm circles (10, 1)
 side skip with arm swings (10, 1)
+low skip (10, 1)
+Cariocca (10, 1)
+high knee skips (10, 1)
+high skip (10, 1)
+pillars with rotation (10, 1)
+
+#1
+=dynamic stretching
+knee hugs (10, 1)
+straight legged march (10, 1)
+Spiderman lunges (10,1)
+Spiderman lunges, backwards (10,1)
 lunge with twist (10, 1)
 flamingos, quad pull (10, 1)
 side lunge (10, 1)
-butt kicks (10, 1)
 Backwards hip rotation (10, 1)
-high knee skips (10, 1)
-pillars with rotation (10, 1)
 widespread good mornings (10, 1)
-skip with arm circles (10, 1)
-Cariocca (10, 1)
 Fire hydrants (10, 1)
 Hip Circles (10, 1)
-Straight legged jog, drive leg up (10, 1)
+Angels (10, 1)
+Scorpions (10, 1)
+Monster walks (20,1)
+Deep squats (12,1)
+
+#2
+=lower leg prep
+Walk on heels foot straight (20,1)
+Walk on toes foot straight (20,1)
+Walk on heels foot out (20,1)
+Walk on toes foot out (20,1)
+Walk on heels foot in (20,1)
+Walk on toes foot in (20,1)
+Walk on outsides of feet (20,1)
+
+#3
+=sprint drills
+butt kicks, right way (10, 1)
+butt kicks, wrong way (10, 1)
+Fast leg, right and left (20,2)
+Straight leg bounds, quick (20,2)
+Straight leg bounds, distance (20,2)
 A skip (10, 1)
 B skip (10, 1)
 C skip (10, 1)
-Angels (10, 1)
-Scorpions (10, 1)
 
-#1
+#4
 =auxiliary
 Calf raises, neutral (55.0, 7.0)
 Calf raises, toes in (33.0, 5.0)
@@ -39,7 +62,7 @@ Calf raises, toes out (33.0, 5.0)
 Single leg balance (49.5, 10.0)
 Single leg RDL (13.2, 1.0)
 
-#2
+#5
 =ladder drills
 two feet in
 two feet in, backwards
@@ -52,16 +75,16 @@ two feet in, side
 one foot in, hop
 one foot in, hop, backwards
 
-#3
+#6
 =upper body
 Pushups (16.5, 2.0)
-Diamond pushups (15.4, 2.0)
-Alternating pushups (27.5, 4.0)
+Diamond pushups (6, 1.0)
+Alternating pushups (15, 3.0)
 Tricep dips (11.0, 2.0)
 Inchworm (4.4, 0.5)
 Plank to pushup (11.0, 1.0)
 
-#4
+#7
 =core
 sit-ups (16.5, 2.0)
 crunches (22.0, 2.0)
@@ -85,18 +108,23 @@ V-sits (11.0, 2.0)
 Mountain climbers (19.8, 2.0)
 Windshield wipers (11.0, 1.0)
 
-#5
-=stretching
+#8
+=static stretching
 Hamstring stretch, sitting down (30, 5)
+Hamstring stretch with rope, lying down (3,.2)
 Quad stretch, standing (20, 5)
 Butterfly stretch (20, 5)
 Glute stretch (20, 5)
 Calf stretch, standing (20, 5)
 Triangle leg stretch, glutes (20, 5)
-Hamstring roll (6, 2)
-IT band roll (6, 2)
-Quad roll (6, 2)
-Calf roll (10, 1)
 Quad stretch with towel, knee decompress (15, 2)
 Angels (10, 1)
 Scorpions (10, 1)
+
+#9
+=rolling
+Hamstring roll (8, 2)
+IT band roll (8, 2)
+Quad roll (8, 2)
+Calf roll (12, 1)
+Tennis ball glute roll

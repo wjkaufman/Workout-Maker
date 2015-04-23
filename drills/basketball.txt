@@ -40,8 +40,9 @@ Behind the back dribbles (20, 5)
 layups, right and left (8, 2)
 Mikan drill (12, 2)
 Reverse Mikan drill (10, 1)
+Free throws (8, 2)
 
-=shooting drills
+=midrange shooting
 2 dribble elbow jumper (10, 2)
 2 dribble wing jumper (10, 2)
 2 dribble baseline jumper (10, 2)
@@ -50,8 +51,14 @@ spin out from wing, shot fake, 2 dribble jumper (10, 2)
 2 dribble side step, fake drive, jumper (10, 2)
 baseline to baseline shooting (8, 2)
 Free throws (10, 2)
+5 minutes, 5 makes, 5 spots
+
+
+=3 point shooting
 spin out 3 pointer (8, 2)
 2 dribble 3 pointer (8, 2)
+5 minutes, 5 makes, 5 spots
+3 minutes, 3 makes, 5 spots
 
 =conditioning drills
 Suicide (2, .3; 1.2,.1)
