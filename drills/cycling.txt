@@ -1,0 +1,13 @@
+=speed
+Power Intervals
+Short Hill Climbs
+Threshold Rides
+Lactate Intervals
+Speed Intervals
+
+=endurance
+Recovery Rides
+Foundation Rides
+Long Rides
+Long Hill Climbs
+Steady-State Rides

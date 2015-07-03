@@ -357,8 +357,8 @@ track = DrillReader("drills/track.txt")
 warmup =  dr.getDrills(0, True) + "\n"
 warmup += dr.getDrills(1, False, 6, True) + "\n"
 warmup += dr.getDrills(2, True) + "\n"
-warmup += dr.getDrills(1, False, 6, True) + "\n"
-warmup += dr.getDrills(1, False, 6, True) + "\n"
+warmup += dr.getDrills(1, False, 8, True) + "\n"
+warmup += dr.getDrills(3, False, 6, True) + "\n"
 
 hjApproach = track.getDrills(1,False, 7, True)
 hjTakeoff = track.getDrills(2, False, 4, True)
@@ -385,16 +385,16 @@ print warmup
 
 print BREAK
 
-print hjTakeoff
-print hjApproach
+# print hjTakeoff
+# print hjApproach
+#
+# print BREAK
 
-print BREAK
-
-# print shootWarmup
+print shootWarmup
 print ballHandle1
 print ballHandle2
-# print midrange
-# print threes
+print midrange
+print threes
 
 print BREAK
 
@@ -403,5 +403,5 @@ print aux
 print upperBody
 print roll
 print static
-print roll2
-print static2
+# print roll2
+# print static2
